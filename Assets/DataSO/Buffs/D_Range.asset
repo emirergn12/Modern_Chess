@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d2e801ee7d4cbe499e0b140df7992c9, type: 3}
+  m_Name: D_Range
+  m_EditorClassIdentifier: Assembly-CSharp::AlperKocasalih.Chess.Grid.BuffData
+  buffName: "R\xFCzgar"
+  icon: {fileID: 21300000, guid: 8f6057b446f96024d804928f2b590e53, type: 3}
+  effectType: 5
+  effectDescription: "Piyonun bir sonraki hareket menzilini -1 kare d\xFC\u015F\xFCr\xFCr."
+  amount: -1
+  isPercentage: 0
+  durationTurns: 1
+  neutralizationTag: Range
+  isPositiveEffect: 0

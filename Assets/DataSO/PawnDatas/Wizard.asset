@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f6ecffe9b6b034a953b287a923a755, type: 3}
+  m_Name: Wizard
+  m_EditorClassIdentifier: Assembly-CSharp::PawnData
+  type: 9
+  pawnGroup: 5
+  pawnName: Wizard
+  damage: 15
+  maxHealth: 60
+  currentHealth: 60
+  pointValue: 5
+  attackPattern: {fileID: 11400000, guid: 2ff93deb6c7502b44a73a35d1a2600e7, type: 2}
+  startWithForceAttackPattern: 0
+  attackCooldown: 0
+  isAoE: 0
+  AoERadius: 0
+  AoEDamageFallOff: 0
+  hasAura: 0
+  auraRadius: 2
+  damageBuff: 0
+  healthbuff: 0
+  isHealer: 1
+  healAmount: 10
+  moveSound: {fileID: 8300000, guid: b4365a848e0d2ca4f9f3e943495ec3ad, type: 3}
+  attackSound: {fileID: 8300000, guid: 3b3a2e38e3028d54989a24e939bbc685, type: 3}
+  deathSound: {fileID: 8300000, guid: de584bcbcda6b6341aada11fd8e32504, type: 3}
+  healSound: {fileID: 8300000, guid: c176f54a74d0e7c43801355d9540939e, type: 3}

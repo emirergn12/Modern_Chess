@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f6ecffe9b6b034a953b287a923a755, type: 3}
+  m_Name: Cannon
+  m_EditorClassIdentifier: Assembly-CSharp::PawnData
+  type: 2
+  pawnGroup: 3
+  pawnName: Cannon
+  damage: 40
+  maxHealth: 10
+  currentHealth: 10
+  pointValue: 2
+  attackPattern: {fileID: 11400000, guid: f5a79135514e46b4b999ff0589c1f927, type: 2}
+  startWithForceAttackPattern: 1
+  attackCooldown: 3
+  isAoE: 1
+  AoERadius: 2
+  AoEDamageFallOff: 10
+  hasAura: 0
+  auraRadius: 2
+  damageBuff: 0
+  healthbuff: 0
+  isHealer: 0
+  healAmount: 0
+  moveSound: {fileID: 8300000, guid: 16f4b2f0340785c4e8ab0c3b189f6dd6, type: 3}
+  attackSound: {fileID: 8300000, guid: 23f85664ed394ad4ebccecc76127f1b6, type: 3}
+  deathSound: {fileID: 8300000, guid: 9cd6d18bb4b79e444aa5380803cbfa76, type: 3}
+  healSound: {fileID: 0}
