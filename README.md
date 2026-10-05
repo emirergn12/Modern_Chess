@@ -1,4 +1,4 @@
-# ♟️ Project Chess: Tactical Hex-Grid Strategy & Deckbuilder
+# ♟️ Modern Chess: Tactical Hex-Grid Strategy & Deckbuilder
 
 [![Unity](https://img.shields.io/badge/Unity-6000.2.7f2-blue?logo=unity)](https://unity.com/)
 [![Language](https://img.shields.io/badge/Language-C%23-blueviolet?logo=csharp)](https://docs.microsoft.com/en-us/dotnet/csharp/)
@@ -6,7 +6,7 @@
 [![Steamworks](https://img.shields.io/badge/Integration-Steamworks-171a21?logo=steam)](https://partner.steamgames.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-**Project Chess**, geleneksel satranç dinamiklerini altıgen (hexagonal) ızgara tabanlı alan kontrolü, stratejik kart draft etme (kart toplama), sinerji sistemleri, gelişmiş AI bot simülasyonları ve Steam destekli çok oyunculu (multiplayer) mimari ile harmanlayan yenilikçi bir 3D taktik strateji oyunudur.
+**Modern Chess**, geleneksel satranç dinamiklerini altıgen (hexagonal) ızgara tabanlı alan kontrolü, stratejik kart draft etme (kart toplama), sinerji sistemleri, gelişmiş AI bot simülasyonları ve Steam destekli çok oyunculu (multiplayer) mimari ile harmanlayan yenilikçi bir 3D taktik strateji oyunudur.
 
 Unity 6 motoru üzerinde yükselen bu proje; modüler C# yapısı, Netcode for GameObjects ile sağlanan sunucu yetkili (server-authoritative) ağ mimarisi, procedural kart üretimi ve gelişmiş UI/VFX efektleri ile eksiksiz bir oyun deneyimi sunar.
 
@@ -108,7 +108,7 @@ python analyze_reports.py
 
 ## 🌐 Çok Oyunculu Ağ Mimarisi & Steam Entegrasyonu
 
-Project Chess, güvenilir bir multiplayer tecrübesi sunmak için **Server-Authoritative** mimariyi benimser:
+Modern Chess, güvenilir bir multiplayer tecrübesi sunmak için **Server-Authoritative** mimariyi benimser:
 
 - **Unity Netcode for GameObjects (NGO):** Tüm oyun durumu (`GameState`), oyuncu skorları, kart çekimleri ve taş hareketleri sunucu tarafından doğrulanır ve istemcilere senkronize edilir.
 - **Steam Entegrasyonu (`SteamManager.cs`):** Facepunch.Steamworks entegrasyonu ile oyuncular Steam arayüzü üzerinden lobi kurabilir, Steam arkadaşlarını davet edebilir. Lobi kurulduğunda Unity Relay Join Code otomatik olarak Steam Lobi metadata'sına gömülür.
@@ -200,4 +200,4 @@ Projeye katkıda bulunmak, hata bildirmek veya öneride bulunmak isterseniz bir 
 - **GitHub:** [@emirergn12](https://github.com/emirergn12)
 
 ---
-<p align="center"><i>Project Chess projesine gösterdiğiniz ilgi için teşekkür ederiz! ♟️✨</i></p>
+<p align="center"><i>Modern Chess projesine gösterdiğiniz ilgi için teşekkür ederiz! ♟️✨</i></p>
