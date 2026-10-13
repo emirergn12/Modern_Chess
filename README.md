@@ -1,203 +1,262 @@
-# ♟️ Modern Chess: Tactical Hex-Grid Strategy & Deckbuilder
+<div align="center">
 
-[![Unity](https://img.shields.io/badge/Unity-6000.2.7f2-blue?logo=unity)](https://unity.com/)
-[![Language](https://img.shields.io/badge/Language-C%23-blueviolet?logo=csharp)](https://docs.microsoft.com/en-us/dotnet/csharp/)
-[![Netcode](https://img.shields.io/badge/Networking-Netcode%20for%20GameObjects-red)](https://unity.com/products/netcode-for-gameobjects)
-[![Steamworks](https://img.shields.io/badge/Integration-Steamworks-171a21?logo=steam)](https://partner.steamgames.com/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+<b>English</b> • <a href="README.tr.md">🇹🇷 Türkçe</a>
 
-**Modern Chess**, geleneksel satranç dinamiklerini altıgen (hexagonal) ızgara tabanlı alan kontrolü, stratejik kart draft etme (kart toplama), sinerji sistemleri, gelişmiş AI bot simülasyonları ve Steam destekli çok oyunculu (multiplayer) mimari ile harmanlayan yenilikçi bir 3D taktik strateji oyunudur.
+# ♟️ Modern Chess
+### Tactical Hex-Grid Strategy & Deckbuilder
 
-Unity 6 motoru üzerinde yükselen bu proje; modüler C# yapısı, Netcode for GameObjects ile sağlanan sunucu yetkili (server-authoritative) ağ mimarisi, procedural kart üretimi ve gelişmiş UI/VFX efektleri ile eksiksiz bir oyun deneyimi sunar.
+[![Unity 6](https://img.shields.io/badge/Unity-6000.2.7f2_URP-black?style=for-the-badge&logo=unity)](https://unity.com/)
+[![C#](https://img.shields.io/badge/C%23-12.0_%2F_.NET_Standard_2.1-239120?style=for-the-badge&logo=csharp)](https://docs.microsoft.com/en-us/dotnet/csharp/)
+[![Netcode for GameObjects](https://img.shields.io/badge/Networking-NGO_2.9.2-00599C?style=for-the-badge&logo=unity)](https://unity.com/products/netcode-for-gameobjects)
+[![Steamworks](https://img.shields.io/badge/Steamworks-Facepunch_API-171a21?style=for-the-badge&logo=steam)](https://partner.steamgames.com/)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
----
+<br />
 
-## 📌 İçindekiler
-- [Öne Çıkan Özellikler](#-öne-çıkan-özellikler)
-- [Oyun Mekanikleri ve Akışı](#-oyun-mekanikleri-ve-akışı)
-- [Taş (Pawn) ve Sınıf Sistemleri](#-taş-pawn-ve-sınıf-sistemleri)
-- [Kart, Draft ve Fusion Sistemi](#-kart-draft-ve-fusion-sistemi)
-- [Yapay Zeka & Bot Simülasyonu](#-yapay-zeka--bot-simülasyonu)
-- [Çok Oyunculu Ağ Mimarisi & Steam Entegrasyonu](#-çok-oyunculu-ağ-mimarisi--steam-entegrasyonu)
-- [Çoklu Dil Desteği (Localization)](#-çoklu-dil-desteği-localization)
-- [Teknoloji Yığını ve Paketler](#-teknoloji-yığını-ve-paketler)
-- [Proje Klasör Yapısı](#-proje-klasör-yapısı)
-- [Kurulum ve Çalıştırma](#-kurulum-ve-çalıştırma)
-- [Katkıda Bulunma ve İletişim](#-katkıda-bulunma-ve-iletişim)
+**Modern Chess** is a competitive 3D tactical strategy game that combines traditional chess dynamics with a **10x11 hexagonal grid**, **dynamic card drafting and fusion mechanics**, **class synergies**, **autonomous heuristic bot AI**, and **Steamworks-powered multiplayer architecture**.
+
+Built on **Unity 6 (Universal Render Pipeline)**, the project leverages a **Server-Authoritative Netcode for GameObjects (NGO)** architecture, Unity Relay/Lobby fallback services, direct Steam invite matchmaking, and runtime multi-language localization.
+
+[Features](#-key-features) • [Game Loop](#-game-loop--turn-phases) • [Pawn & Class Roster](#-pawn-classes--combat-roles) • [System Architecture](#-software-architecture--design-patterns) • [AI & Telemetry](#-bot-ai--match-analytics) • [Getting Started](#-getting-started--installation)
+
+</div>
 
 ---
 
-## ✨ Öne Çıkan Özellikler
+## 🌟 Key Features
 
-- **📐 Altıgen Izgara (Flat-Top Hex Grid):** 10x11 boyutlarında matematiksel olarak hizalanmış, dinamiğe dayalı yol bulma ve engel yönetimi sunan altıgen harita sistemi.
-- **🃏 Prosedürel Kart Desteği (120 Kartlık Deck):** Tohumlanan (seeded) rastgele kart üretimi, sınıfa özel Buff/Debuff mantığı ve kart birleştirme (Fusion) mekanizması.
-- **🤝 Sinerji & Aura Sistemleri:** Sahada aynı gruptan taşların kombinasyonuna göre tetiklenen dinamik buff'lar ve etrafındaki müttefikleri güçlendiren Aura efektleri.
-- **🤖 Server-Authoritative Bot AI:** Kart değerlendirme (Keep/Give/Burn), ağırlıklı güç hesabı (Damage/HP) ve taktiki pozisyon alma yeteneğine sahip gelişmiş yapay zeka.
-- **📊 Otomatik Bot Match Reporter & Python Analiz Betiği:** Bot vs Bot maçlarını XML formatında kaydeden telemetry altyapısı ve galibiyet oranlarını analiz eden Python betiği (`analyze_reports.py`).
-- **🌐 Unity Netcode & Steam Entegrasyonu:** Unity Relay/Lobby altyapısı ve Steamworks üzerinden doğrudan Steam arkadaş davetleri (Lobby ID entegrasyonu).
-- **🌍 Çoklu Dil Desteği (Localization):** İngilizce, Almanca, Fransızca, Portekizce ve İspanyolca olmak üzere 5 farklı dil desteği.
-- **✨ Görsel ve İşitsel Şölen:** DOTween animasyonları, MoreMountains Feel & NiceVibrations dokunsal/görsel geribildirimleri, dynamic 3D kartlar ve özel particle/VFX paketleri.
+- **📐 10x11 Flat-Top Hexagonal Grid:**  
+  Mathematically centered axial/odd-q offset coordinate mapping with cell occupancy tracking, dynamic obstacles, and raycast-based hex hover feedback.
+- **🃏 Procedural Deck & Dynamic Buff/Debuff Affinity:**  
+  Deterministic seed-based generation of a 120-card deck. Modular buff system scaling at 100% when matched with the pawn's class and 50% on class mismatches with alternative movement patterns.
+- **⚗️ 3-Card Fusion & Re-Roll Mechanics:**  
+  Card craft system enabling players to combine multiple hand cards into high-tier hybrid cards, accompanied by dice-based re-roll chances and animated 3D card flips.
+- **🤝 Team Synergies & Radiating Aura Systems:**  
+  Dynamic server-evaluated bonuses activated when threshold counts of specific pawn classes are alive on the board, alongside commander units radiating AoE stat auras.
+- **🤖 Server-Authoritative Heuristic Bot AI:**  
+  Autonomous artificial intelligence that weights board state, damage potential, and health scores (`PowerScore = Damage * 2 + HP * 1`) to make optimal Keep/Give/Burn card decisions.
+- **📊 Automated XML Telemetry & Python Analytics CLI:**  
+  Match logging system persisting end-game telemetry to `%LOCALAPPDATA%` in XML format, paired with a command-line analytics script (`analyze_reports.py`) for automated balance testing.
+- **🌐 Hybrid Multiplayer (Unity NGO + Steamworks):**  
+  Server-authoritative state synchronization preventing client-side tampering, combined with Facepunch.Steamworks lobby creation and Unity Relay code propagation.
+- **🌍 5-Language Runtime Localization:**  
+  Dynamic in-game language swapping (English, German, French, Portuguese, Spanish) driven by JSON data files and decoupled C# events.
+- **🎨 Visual & Haptic Juice:**  
+  Smooth DOTween micro-interactions, MoreMountains Feel & Lofelt NiceVibrations feedback, 3D dynamic cards, and tailored particle VFX.
 
 ---
 
-## 🎮 Oyun Mekanikleri ve Akışı
+## 🔄 Game Loop & Turn Phases
 
-Oyunda bir maç 5 ana evreden oluşur (`GameManager.cs` tarafından yönetilir):
+All match transitions are managed by the server-authoritative `GameManager` finite state machine (FSM):
 
 ```mermaid
-graph TD
-    A[1. Setup Phase] --> B[2. Roll Dice Phase]
-    B --> C[3. Draft Phase]
-    C --> D[4. Action Phase]
-    D --> E{Kazanan Var mı?}
-    E -- Hayır --> C
-    E -- Evet --> F[5. End Game Phase]
+stateDiagram-v2
+    [*] --> Setup: Match Started
+    Setup --> RollDice: Pawns Placed on Grid
+    RollDice --> DraftPhase: Turn Order Decided
+    
+    state TurnCycle {
+        DraftPhase --> ActionPhase: Cards Drafted / Fusion Performed
+        ActionPhase --> DraftPhase: Turn Finished (Next Player)
+    }
+
+    ActionPhase --> EndGame: All Enemy Pawns Eliminated / Score Dominance
+    EndGame --> Setup: Mutual Restart Confirmed
 ```
 
-1. **Setup Phase (Hazırlık Evresi):** Oyuncular stratejilerine uygun taş gruplarını seçer ve altıgen harita üzerindeki başlangıç alanlarına yerleştirir.
-2. **Roll Dice Phase (Zar Atışı):** İlk hamleyi kimin yapacağını belirlemek için sunucu senkronize zar atışı gerçekleştirir.
-3. **Draft Phase (Kart Seçimi):** Oyuncular rastgele çekilen kartlar arasından seçim yapar. Kartları saklayabilir (Keep), rakibe devredebilir (Give), yakabilir (Burn) veya kart birleştirme (Fusion) yapabilirler.
-4. **Action Phase (Aksiyon Evresi):** Oyuncular ellerindeki kartları oynayarak taşlarını hareket ettirir, özel yetenekleri tetikler, engeller koyar ve rakip taşlara saldırır.
-5. **End Game Phase (Oyun Sonu):** Bir oyuncunun tüm taşları elendiğinde veya skor üstünlüğü elde edildiğinde maç biter. Her iki oyuncunun onayı ile maç yeniden başlatılabilir (Restart).
+1. **Setup Phase:** Both players select their pawn formations and place them within their respective deployment zones. Synergies are evaluated on placement.
+2. **Roll Dice Phase:** The server generates a synchronized dice roll to determine initial turn initiative.
+3. **Draft Phase:** Players draw 3 cards from the shared seeded deck and choose:
+   - **Keep:** Add the card to your playable hand.
+   - **Give:** Force the card onto the opponent (ideal for cards carrying severe debuffs or mismatched classes).
+   - **Burn:** Permanently discard undesirable cards.
+   - **Fusion:** Combine multiple hand cards to forge a more powerful hybrid card with re-roll options.
+4. **Action Phase:** Players spend cards to move pawns, cast healing spells, place defensive obstacles (`ObstaclePattern`), and execute attacks.
+5. **End Game Phase:** Triggered when a player's pawns are completely eliminated or the round limit is reached, declaring the victor and enabling a synchronized match restart.
 
 ---
 
-## ♟️ Taş (Pawn) ve Sınıf Sistemleri
+## ♟️ Pawn Classes & Combat Roles
 
-Oyunda her biri kendine özgü istatistiklere, saldırı kalıplarına ve ses/VFX efektlerine sahip **9 benzersiz Taş Sınıfı** bulunmaktadır (`PawnData.cs`):
+Every pawn is driven by a `PawnData` ScriptableObject defining combat stats, attack patterns, sounds, and visual effects:
 
-| Sınıf (Pawn Type) | Özel Yetenekler & Özellikler |
-| :--- | :--- |
-| **🏹 Archer (Okçu)** | Uzak mesafeden hedef alma ve menzilli saldırı kalıpları. |
-| **💣 Cannon (Topçu)** | Alan etkili (AoE) patlama hasarı ve düsen hasar yarıçapı (Damage Falloff). |
-| **🛡️ Knight (Şövalye)** | Yüksek can havuzu ve ön hat koruma yetenekleri. |
-| **👑 Queen (Vezir)** | Geniş hareket ve yüksek saldırı kapasitesi. |
-| **🐎 Horseman (Süvari)** | Engellerin üzerinden atlayabilen esnek altıgen hareket kalıbı. |
-| **🎖️ Commander (Komutan)** | Çevresindeki müttefik taşlara bonus hasar ve can sağlayan **Aura** yeteneği. |
-| **🥷 Ninja (Ninja)** | Kritik sızma hareketleri ve yüksek anlık hasar. |
-| **🤠 Cheriff (Şerif)** | Dengeli mesafe ve kontrol yetenekleri. |
-| **🧙 Wizard (Büyücü)** | Müttefik birimleri iyileştirme (**Healer**) ve dinamik alan buff'ları. |
-
----
-
-## 🃏 Kart, Draft ve Fusion Sistemi
-
-- **Dinamik Buff & Debuff İğnelemesi:** `DeckManager`, 120 kartlık desteyi oluştururken sınıfa özel Buff'lar ve küresel Debuff'lar üretir. Kart, ait olduğu sınıfta oynandığında %100 etki ederken, eşleşmeyen bir sınıfta oynandığında düşürülmüş etki veya farklı bir hareket kalıbı (Mismatch Pattern) uygular.
-- **Engelleme Kartları (Obstacle Cards):** Sadece taş hareketi değil, haritaya dinamik 3 boyutlu engeller (`ObstaclePattern`) koyarak rakibin yolunu kapatma olanağı sunar.
-- **Kart Birleştirme (Fusion System):** Oyuncular ellerindeki kartları birleştirerek daha güçlü kombinasyonlar üretebilir (`FusionUI.cs`). Şanslarını beğenmezlerse Re-Roll haklarını kullanabilirler.
+| Class | Archetype | Damage | Health | Unique Capabilities & Strategy |
+| :--- | :--- | :---: | :---: | :--- |
+| **🏹 Archer** | Ranged Carry | Med | Med | Linear and angular ranged attack trajectories; creates safe-distance area denial. |
+| **💣 Cannon** | Area of Effect (AoE) | High | Med | Explosive shell impacts with outward damage falloff over a defined radius. |
+| **🛡️ Knight** | Frontline Tank | Med | High | High durability and choke-point blocking; protects high-value glass cannons. |
+| **👑 Queen** | High-Mobility Threat | Very High | High | Broad multidirectional reach capable of threatening multiple lanes simultaneously. |
+| **🐎 Horseman** | Flanking Cavalry | High | Med | Leaping movement pattern capable of bypassing obstacles and opposing pawns. |
+| **🎖️ Commander** | Support & Aura Buffer | Med | High | Radiates a passive **+Damage** and **+Health** aura to all friendly units within a 2-cell radius. |
+| **🥷 Ninja** | Infiltration Assassin | High | Low | Infiltrates backlines with agile leap steps to execute single high-priority targets. |
+| **🤠 Cheriff** | Mid-Range Skirmisher | Balanced | Balanced | Versatile tactical response unit maintaining stable line control. |
+| **🧙 Wizard** | Combat Healer | Low | Med | Regenerates health on wounded allies (**Heal**) while providing utility buffs. |
 
 ---
 
-## 🤖 Yapay Zeka & Bot Simülasyonu
+## 🏗️ Software Architecture & Design Patterns
 
-Proje, tek oyunculu testler ve dengeleme simülasyonları için tamamen sunucu taraflı çalışan gelişmiş bir **Bot AI** altyapısına sahiptir (`BotAIController.cs`):
+The codebase is organized into cleanly decoupled modules following clean architecture and SOLID principles:
 
-- **Kart Değerlendirme Algoritması:** Bot, elindeki kartların taş sınıfları ile uyumunu hesaplar (%100 buff vs %50 mismatch etki).
-- **Taktik Yol Bulma & Saldırı:** Hasar/Sağlık ağırlık çarpanlarına göre en yüksek puanlı hamleleri önceliklendirir.
-- **Telemetry ve Analiz (BotVsBotReports):** Yapay zeka maçlarının tüm detayları `%LOCALAPPDATA%Low/DefaultCompany/Project_Chess/BotVsBotReports` dizinine XML formatında kaydedilir.
+```
+Assets/Scripts/
+├── Grid/
+│   ├── Core/                       # Combat calculations, Auras, Health, Localization
+│   │   ├── AttackHandler.cs        # AoE falloff and attack resolution
+│   │   ├── AuraManager.cs          # Passive radiant buff calculations
+│   │   ├── PawnHealthController.cs # Floating health bars and damage indicators
+│   │   └── LocalizationManager.cs  # 5-language JSON translation parser
+│   ├── BotAIController.cs          # Server-side heuristic decision tree
+│   ├── BotMatchReporter.cs         # XML telemetry logger
+│   ├── DeckManager.cs              # Seeded 120-card deck & runtime buff injection
+│   ├── DraftManager.cs             # Draft rounds & Keep/Give/Burn/Fusion RPCs
+│   ├── FusionUI.cs                 # Card combination modal & DOTween card flips
+│   ├── GameManager.cs              # Networked state machine (FSM)
+│   ├── GridGenerator.cs            # 10x11 flat-top hex mathematical generator
+│   ├── SynergyManager.cs           # Threshold class evaluation on server
+│   └── TurnManager.cs              # Turn cycles, action clocks, and dice rolls
+└── Multiplayer/
+    ├── SteamManager.cs             # Facepunch.Steamworks lobby & invite handling
+    ├── LobbyManager.cs             # Unity Relay / Lobby session integration
+    └── NetworkBootstrap.cs        # Connection bootstrap and perspective controller
+```
 
-### 🐍 Python İstatistik Analiz Betiği (`analyze_reports.py`)
+### Key Architectural Patterns:
+- **Server-Authoritative State Machine:** Game state transitions, scores, card draws, and health values mutate solely on the host/server, synchronized across clients via `NetworkVariable` and `ClientRpc`.
+- **ScriptableObject Data-Driven Architecture:** Pawns (`PawnData`), Movement Cards (`CardData`), and Buffs (`BuffData`) are decoupled data containers, allowing game designers to iterate without modifying runtime code.
+- **Observer Pattern:** Decoupled C# events (`OnStateChanged`, `OnTurnChanged`, `OnLanguageChanged`) drive UI updates, sound triggers, and camera shifts without cyclic dependencies.
+- **Assembly Definition Boundaries (`GameCore.asmdef`):** Optimizes compilation times and enforces strict dependency rules across Editor tools, Runtime logic, and Unit/PlayMode test suites.
 
-Kök dizinde yer alan Python script'i sayesinde son oynanan bot maçlarının kazanan oranları ve tercih edilen taş kombinasyonları anında analiz edilebilir:
+---
+
+## 🤖 Bot AI & Match Analytics
+
+### Heuristic Decision Engine
+`BotAIController` is a server-only component that enables singleplayer playtesting and automated game balancing:
+- **Card Valuation:** Calculates class affinity scores. Positively aligned cards are prioritized for **Keep**, while debuffs or mismatched cards are passed via **Give** or destroyed via **Burn**.
+- **Tactical Positioning:** Evaluates combat threat using a weighted power score (`DamageWeight = 2.0`, `HealthWeight = 1.0`), prioritizing vulnerable or high-threat enemy pawns.
+
+### Automated Telemetry & Python CLI Tool
+Every simulated AI match generates an XML report on the host machine:
+
+```
+%LOCALAPPDATA%Low/DefaultCompany/Project_Chess/BotVsBotReports/Report_[GameID].xml
+```
+
+The repository includes a root Python tool (`analyze_reports.py`) to parse match results and evaluate balance metrics:
 
 ```bash
+# Analyze win rates and pawn selections from recent matches:
 python analyze_reports.py
 ```
 
----
-
-## 🌐 Çok Oyunculu Ağ Mimarisi & Steam Entegrasyonu
-
-Modern Chess, güvenilir bir multiplayer tecrübesi sunmak için **Server-Authoritative** mimariyi benimser:
-
-- **Unity Netcode for GameObjects (NGO):** Tüm oyun durumu (`GameState`), oyuncu skorları, kart çekimleri ve taş hareketleri sunucu tarafından doğrulanır ve istemcilere senkronize edilir.
-- **Steam Entegrasyonu (`SteamManager.cs`):** Facepunch.Steamworks entegrasyonu ile oyuncular Steam arayüzü üzerinden lobi kurabilir, Steam arkadaşlarını davet edebilir. Lobi kurulduğunda Unity Relay Join Code otomatik olarak Steam Lobi metadata'sına gömülür.
-- **ParrelSync Desteği:** Tek bir geliştirme bilgisayarında birden fazla Unity editör örneği açarak lokal multiplayer test yapma imkanı sağlar.
-
----
-
-## 🌍 Çoklu Dil Desteği (Localization)
-
-Oyunda dinamik olarak dil değiştirme imkanı sunan bir `LocalizationManager` mevcuttur. Çeviriler `Assets/Resources/Localization/` klasöründe JSON formatında saklanır:
-
-- 🇬🇧 **İngilizce (EN)**
-- 🇩🇪 **Almanca (DE)**
-- 🇫🇷 **Fransızca (FR)**
-- 🇵🇹 **Portekizce (PT)**
-- 🇪🇸 **İspanyolca (ES)**
-
----
-
-## 🛠️ Teknoloji Yığını ve Paketler
-
-- **Oyun Motoru:** Unity 6 (`6000.2.7f2`) URP (Universal Render Pipeline)
-- **Ağ & Çok Oyunculu:** Unity Netcode for GameObjects (`2.9.2`), Unity Transport (`2.6.0`), Unity Relay & Lobby Services
-- **Steam API:** Facepunch.Steamworks
-- **Giriş Sistemi:** Unity Input System (`1.14.2`)
-- **UI & Görsel Efektler:** TextMeshPro, DOTween (Demigiant), MoreMountains Feel, Lofelt NiceVibrations
-- **Geliştirici Araçları:** ParrelSync (Lokal Test), Python 3.x (Analiz)
-
----
-
-## 📁 Proje Klasör Yapısı
-
-```
-Project_Chess/
-├── Assets/
-│   ├── DataSO/              # ScriptableObject verileri (Taşlar, Kartlar, Buff'lar)
-│   ├── Materials/           # Özel materyaller ve kaplamalar
-│   ├── Prefabs/             # Oyun içi nesneler, UI elemanları ve efekt prefablari
-│   ├── Resources/
-│   │   └── Localization/    # Dil JSON dosyaları (en, de, fr, pt, es)
-│   ├── Scenes/              # MainMenu, LobbyScene, GameScene
-│   ├── Scripts/
-│   │   ├── Editor/          # Özel editör araçları ve inspector genişletmeleri
-│   │   ├── Grid/            # Izgara, Taş, GameManager, Bot AI, Kart & Sinerji mantığı
-│   │   │   └── Core/        # Can göstergeleri, Saldırı işleyicileri, Localization
-│   │   ├── Multiplayer/     # SteamManager, LobbyManager, NetworkBootstrap
-│   │   └── UI/              # HandUI, DraftUI, FusionUI, GameOverUI
-│   ├── Sounds/              # Oyun içi ses efektleri ve müzikler
-│   └── VFXPACK_.../         # Görsel efekt paketleri
-├── Packages/                # Unity Paket Yöneticisi manifest dosyaları
-├── ProjectSettings/         # Proje ve girdi ayarları
-├── analyze_reports.py       # Bot maç raporlarını analiz eden Python scripti
-└── README.md                # Proje dokümantasyonu
+**Sample CLI Output:**
+```text
+Summary of latest 10 matches:
+Player 1 Wins: 6 | Player 2 Wins: 4
+Win Rate P1: 60.0% | Win Rate P2: 40.0%
+Game 1042: Winner 1 (P1: Commander, Archer, Knight | P2: Wizard, Cannon, Ninja)
 ```
 
 ---
 
-## 🚀 Kurulum ve Çalıştırma
+## 🌐 Multiplayer & Steamworks Integration
 
-### Gereksinimler
-- **Unity Hub** & **Unity 6 (6000.2.7f2)** veya üzeri.
+Modern Chess provides production-ready networking for both local testing and commercial distribution:
+
+1. **Steamworks Lobby Matching (`SteamManager.cs`):**
+   - When a host creates a lobby, a Unity Relay `JoinCode` is generated in the background.
+   - The join code is automatically injected into the Steam Lobby metadata (`relay_code`).
+   - Clients can join seamlessly via Steam Overlay friend invites or direct game joining without manual code entry.
+2. **Dual-Client Testing via ParrelSync:**
+   - Pre-configured with `com.veriorpies.parrelsync`.
+   - Run two independent editor instances on a single machine for multiplayer debugging without building standalone binaries.
+
+---
+
+## 🌍 Localization Engine
+
+Supported languages are parsed dynamically at runtime via `LocalizationManager` from `Assets/Resources/Localization/`:
+
+| Code | Language | Source File |
+| :---: | :--- | :--- |
+| `EN` | English (Default) | `en.json` |
+| `DE` | German | `de.json` |
+| `FR` | French | `fr.json` |
+| `PT` | Portuguese | `pt.json` |
+| `ES` | Spanish | `es.json` |
+
+UI labels subscribe to `LocalizationManager.OnLanguageChanged`, updating text components without reloading scenes.
+
+---
+
+## 🛠️ Tech Stack & Packages
+
+| Category | Technology / Library | Version / Details |
+| :--- | :--- | :--- |
+| **Game Engine** | Unity Engine (URP) | `6000.2.7f2` |
+| **Networking** | Netcode for GameObjects | `2.9.2` |
+| **Transport** | Unity Transport | `2.6.0` |
+| **Cloud Services** | Unity Relay & Lobby Services | `1.2.0 / 1.3.0` |
+| **Platform Integration** | Facepunch.Steamworks | Steamworks API v1.5x |
+| **Input System** | Unity Input System | `1.14.2` |
+| **UI & Typography** | TextMeshPro & uGUI | `2.0.0` |
+| **Animation Tweening** | DOTween (Demigiant) | Pro / v1.2+ |
+| **Juice & Feel** | MoreMountains Feel & NiceVibrations | Lofelt Haptics |
+| **Testing** | Unity Test Framework | EditMode & PlayMode Tests |
+
+---
+
+## 🚀 Getting Started & Installation
+
+### Prerequisites
+- **Unity Hub** with **Unity 6 (6000.2.7f2)** installed.
 - **Git**
-- *(İsteğe Bağlı)* **Steam istemcisi** (Steam multiplayer testleri için açık olmalıdır).
-- *(İsteğe Bağlı)* **Python 3.x** (Bot simülasyon analizleri için).
+- *(Optional)* **Steam Client** (must be running in the background for Steam invite testing).
+- *(Optional)* **Python 3.8+** (for match telemetry CLI).
 
-### Adım Adım Kurulum
+### Step-by-Step Setup
 
-1. **Repozitoryoyu Klonlayın:**
+1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/emirergn12/Project_Chess.git 
+   git clone https://github.com/emirergn12/Modern_Chess.git
    ```
-2. **Projeyi Unity Hub ile Açın:**
-   - Unity Hub'ı açın, `Add` butonuna tıklayın ve `Project_Chess` klasörünü seçin.
-   - Editör sürümü olarak **Unity 6000.2.7f2** kullandığınızdan emin olun.
 
-3. **Sahneyi Başlatın:**
-   - `Assets/Scenes/MainMenu.unity` sahnesini açın ve `Play` butonuna basın.
+2. **Open with Unity Hub:**
+   - Launch Unity Hub.
+   - Click **Add > Add project from disk** and select the cloned project root.
+   - Verify that the editor version is set to **6000.2.7f2**.
 
-4. **Multiplayer Testi (ParrelSync):**
-   - Üst menüden `ParrelSync > Clones Manager` açarak yeni bir klon editör oluşturun ve iki örneği aynı anda çalıştırarak Lobi / Relay testlerini gerçekleştirin.
+3. **Launch the Game Scene:**
+   - Open `Assets/Scenes/MainMenu.unity`.
+   - Press **Play (▶️)** in the Unity Editor.
+
+4. **Multiplayer Testing with ParrelSync:**
+   - Navigate to `ParrelSync > Clones Manager` in the top Unity menu bar.
+   - Create a clone project and launch it alongside the primary editor.
+   - Host from the primary editor and connect as a Client from the clone.
+
+---
+
+## 📄 License & Contributions
+
+This project is open-source under the [MIT License](LICENSE). Contributions, bug reports, and suggestions are welcome:
+
+1. Fork the Project (`fork`).
+2. Create a Feature Branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your Changes (`git commit -m 'feat: Add AmazingFeature'`).
+4. Push to the Branch (`git push origin feature/AmazingFeature`).
+5. Open a **Pull Request**.
 
 ---
 
-## 📝 Katkıda Bulunma ve İletişim
+<div align="center">
 
-Projeye katkıda bulunmak, hata bildirmek veya öneride bulunmak isterseniz bir **Issue** açabilir ya da **Pull Request** gönderebilirsiniz.
+### 👨‍💻 Developer
+**Emir Ergün**  
+[![GitHub](https://img.shields.io/badge/GitHub-emirergn12-181717?style=flat&logo=github)](https://github.com/emirergn12)
 
-- **Geliştirici:** Emir Ergün
-- **GitHub:** [@emirergn12](https://github.com/emirergn12)
+*Thank you for exploring Modern Chess! Enjoy the tactical battlefield! ♟️✨*
 
----
-<p align="center"><i>Modern Chess projesine gösterdiğiniz ilgi için teşekkür ederiz! ♟️✨</i></p>
+</div>
